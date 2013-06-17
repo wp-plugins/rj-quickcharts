@@ -1,4 +1,4 @@
-=== RJ Quickcharts WordPress Plugin ===
+=== RJ Quickcharts ===
 Contributors: randyjensen
 Donate link: http://randyjensen.com/
 License: GPLv3

@@ -16,7 +16,7 @@ Create incredible HTML5/JavaScript charts right inside WordPress with a few clic
 
 = License =
 
-RJ Quickcharts is licensed under the GPLv3 license. jqPlot is licensed under GPLv2. Handsontable is MIT licensed which is compatible with the GPL license.
+RJ Quickcharts is licensed under the GPLv3 license.
 
 == Installation ==
 

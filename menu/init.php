@@ -1,0 +1,59 @@
+<?php
+if(!class_exists('RJ_Quickcharts_Menu'))
+{
+    class RJ_Quickcharts_Menu
+    {
+
+        public function __construct()
+        {
+            add_action('init', array(&$this, 'init'));
+        }
+
+        public function init()
+        {
+            add_action('admin_menu', array(&$this, 'register_my_custom_menu_page'));
+            add_action('admin_footer', array(&$this, 'css_for_rjqc_admin_menu'));
+        }
+
+        public function register_my_custom_menu_page()
+        {
+            add_menu_page(
+                'RJ Quickcharts',
+                'RJ Quickcharts',
+                'read',
+                '/rj-charts/admin/rjqc-admin.php',
+                '',
+                '',
+                '26.1'
+            );
+            add_submenu_page(
+                '/rj-charts/admin/rjqc-admin.php',
+                'My Charts',
+                'My Charts',
+                'read',
+                '/rj-charts/admin/rjqc-admin.php'
+            );
+            add_submenu_page(
+                '/rj-charts/admin/rjqc-admin.php',
+                'New Chart',
+                'New Chart',
+                'read',
+                '/rj-charts/admin/rjqc-admin-new.php'
+            );
+        }
+
+        public function css_for_rjqc_admin_menu() {
+            echo '
+            <style type="text/css" media="screen">
+            #toplevel_page_rj-charts-admin-rjqc-admin div.wp-menu-image {
+                background: url('.plugins_url().'/rj-charts/img/nav-chart.png) no-repeat 6px -17px !important;
+            }
+            #toplevel_page_rj-charts-admin-rjqc-admin:hover div.wp-menu-image,
+            #toplevel_page_rj-charts-admin-rjqc-admin.wp-has-current-submenu div.wp-menu-image {
+                background-position:6px 7px!important;
+            }
+            </style>
+            ';
+        }
+    }
+}

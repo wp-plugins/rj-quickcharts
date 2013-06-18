@@ -45,11 +45,11 @@ if(!class_exists('RJ_Quickcharts_Menu'))
         public function css_for_rjqc_admin_menu() {
             echo '
             <style type="text/css" media="screen">
-            #toplevel_page_rj-charts-admin-rjqc-admin div.wp-menu-image {
-                background: url('.plugins_url().'/rj-charts/img/nav-chart.png) no-repeat 6px -17px !important;
+            #toplevel_page_rj-quickcharts-admin-rjqc-admin div.wp-menu-image {
+                background: url('.plugins_url().'/rj-quickcharts/img/nav-chart.png) no-repeat 6px -17px !important;
             }
-            #toplevel_page_rj-charts-admin-rjqc-admin:hover div.wp-menu-image,
-            #toplevel_page_rj-charts-admin-rjqc-admin.wp-has-current-submenu div.wp-menu-image {
+            #toplevel_page_rj-quickcharts-admin-rjqc-admin:hover div.wp-menu-image,
+            #toplevel_page_rj-quickcharts-admin-rjqc-admin.wp-has-current-submenu div.wp-menu-image {
                 background-position:6px 7px!important;
             }
             </style>

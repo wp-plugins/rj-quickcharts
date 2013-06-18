@@ -14,7 +14,7 @@ if(!class_exists('RJ_Quickcharts'))
     global $rjqc_db_version;
     global $table_name;
 
-    $rjqc_db_version = '0.1';
+    $rjqc_db_version = '0.2';
     $table_name = $wpdb->prefix . 'rj_quickcharts';
 
 	class RJ_Quickcharts

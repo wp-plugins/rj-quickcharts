@@ -192,11 +192,11 @@ jQuery(document).ready(function($) {
                     '<td class="column-id">'+newId+'</td>'+
                     '<td class="column-title">'+
                         '<strong>'+
-                            '<a class="row-title" href="admin.php?page=rj-charts/admin/rjqc-admin-new.php&amp;id='+newId+'" title="Edit">'+res.title+'</a>'+
+                            '<a class="row-title" href="admin.php?page=rj-quickcharts/admin/rjqc-admin-new.php&amp;id='+newId+'" title="Edit">'+res.title+'</a>'+
                         '</strong>'+
                         '<div class="row-actions">'+
                             '<span class="edit">'+
-                                '<a title="Edit this chart" href="admin.php?page=rj-charts/admin/rjqc-admin-new.php&amp;id='+newId+'">Edit</a> | '+
+                                '<a title="Edit this chart" href="admin.php?page=rj-quickcharts/admin/rjqc-admin-new.php&amp;id='+newId+'">Edit</a> | '+
                             '</span>'+
                             '<span class="duplicate">'+
                                 '<a title="Duplicate this chart" class="duplicate-chart" data-id="'+newId+'">Duplicate</a> | '+

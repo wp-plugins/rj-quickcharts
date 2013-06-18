@@ -99,7 +99,7 @@ if(!class_exists('RJ_Quickcharts_Media'))
                         } else {
                             $chart_list .= '
                                 <tr>
-                                    <td style="padding:9px 10px 10px;" colspan="5">You don\'t have any charts yet. <a href="admin.php?page=rj-charts/admin/rjqc-admin-new.php">Create one now</a>!</td>
+                                    <td style="padding:9px 10px 10px;" colspan="5">You don\'t have any charts yet. <a href="admin.php?page=rj-quickcharts/admin/rjqc-admin-new.php">Create one now</a>!</td>
                                 </tr>
                             ';
                         }
@@ -119,7 +119,7 @@ if(!class_exists('RJ_Quickcharts_Media'))
 
         public function load_media_rjquickcharts_scripts()
         {
-            wp_enqueue_style('rjqc-jqplot', plugins_url('/rj-charts/css/jquery.jqplot.min.css'));
+            wp_enqueue_style('rjqc-jqplot', plugins_url('/rj-quickcharts/css/jquery.jqplot.min.css'));
 
             if(preg_match('/(?i)msie [1-8]/',$_SERVER['HTTP_USER_AGENT']))
             {

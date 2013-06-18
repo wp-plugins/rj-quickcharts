@@ -21,24 +21,24 @@ if(!class_exists('RJ_Quickcharts_Menu'))
                 'RJ Quickcharts',
                 'RJ Quickcharts',
                 'read',
-                '/rj-charts/admin/rjqc-admin.php',
+                'rj-quickcharts/admin/rjqc-admin.php',
                 '',
                 '',
                 '26.1'
             );
             add_submenu_page(
-                '/rj-charts/admin/rjqc-admin.php',
+                'rj-quickcharts/admin/rjqc-admin.php',
                 'My Charts',
                 'My Charts',
                 'read',
-                '/rj-charts/admin/rjqc-admin.php'
+                'rj-quickcharts/admin/rjqc-admin.php'
             );
             add_submenu_page(
-                '/rj-charts/admin/rjqc-admin.php',
+                'rj-quickcharts/admin/rjqc-admin.php',
                 'New Chart',
                 'New Chart',
                 'read',
-                '/rj-charts/admin/rjqc-admin-new.php'
+                'rj-quickcharts/admin/rjqc-admin-new.php'
             );
         }
 

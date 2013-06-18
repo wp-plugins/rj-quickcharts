@@ -44,6 +44,9 @@ Get in touch with me: [randyjensen.com](http://www.randyjensen.com)
 
 == Changelog ==
 
+= 0.3 =
+* Fixed more references to wrong folde
+
 = 0.2 =
 * Fixed menu links issue
 

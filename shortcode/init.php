@@ -36,10 +36,63 @@ if(!class_exists('RJ_Quickcharts_Shortcode'))
                 $yAxisCats  = $chart[0]->xAxisCats;
                 $yAxisText  = $chart[0]->yAxisTitleText;
                 $legend     = $chart[0]->legendOn;
-                $legend     = ($legend == 1) ? 'true' : 'false';
+                $legend     = ($legend == 1) ? "true" : "false";
                 $series     = $chart[0]->series;
                 $hotSeries  = $chart[0]->hotSeries;
                 $chartFill  = false;
+
+                if ($type == "pie") {
+                    $xAxis      = "{}";
+                    $legendOpts = "{
+                                    margin: 0,
+                                    padding: 0,
+                                    background: 'transparent',
+                                    textColor: '#666',
+                                    fontFamily: 'Arial, Verdana, Helvetica',
+                                    fontSize: '11px',
+                                    border: 'none',
+                                    show: true,
+                                    location: 'n',
+                                    showSwatch: true,
+                                    placement: 'outsideGrid',
+                                    renderer: jQuery.jqplot.EnhancedLegendRenderer,
+                                    rendererOptions: {
+                                        numberRows: 1,
+                                        disableIEFading: true
+                                    }
+                                }";
+                } else {
+                    $xAxis      = "{
+                                    label: '',
+                                    renderer: jQuery.jqplot.CategoryAxisRenderer,
+                                    labelRenderer: jQuery.jqplot.CanvasAxisLabelRenderer,
+                                    tickOptions: {
+                                        mark: false
+                                    },
+                                    labelOptions: {
+                                        show: true,
+                                        fontSize: '14px'
+                                    }
+                                }";
+                    $legendOpts = "{
+                                        margin: 0,
+                                        padding: 0,
+                                        background: 'transparent',
+                                        textColor: '#666',
+                                        fontFamily: 'Arial, Verdana, Helvetica',
+                                        fontSize: '11px',
+                                        border: 'none',
+                                        show: true,
+                                        location: 'n',
+                                        showSwatch: true,
+                                        placement: 'outsideGrid',
+                                        renderer: jQuery.jqplot.EnhancedLegendRenderer,
+                                        rendererOptions: {
+                                            numberRows: 1,
+                                            disableIEFading: true
+                                        }
+                                    }";
+                }
 
                 $return_string .= "<div id='rjqc_container_$id'></div>";
                 $return_string .= "<script>";
@@ -70,9 +123,14 @@ if(!class_exists('RJ_Quickcharts_Shortcode'))
                                     }";
 
                 $return_string .= "chart = jQuery.jqplot('rjqc_container_$id', $series, {
-                                    seriesDefaults:{
+                                    seriesDefaults: {
+                                        renderer: r,
+                                        shadow: false,
                                         fill: '$chartFill',
-                                        renderer: r
+                                        rendererOptions: {
+                                            showDataLabels: true,
+                                            textColor: '#white'
+                                        }
                                     },
                                     title: {
                                         text: '$title',
@@ -81,42 +139,29 @@ if(!class_exists('RJ_Quickcharts_Shortcode'))
                                         textColor: '#666',
                                     },
                                     grid: {
+                                        drawGridlines: true,
+                                        background: 'white',
+                                        drawBorder: false,
                                         backgroundColor: 'white',
                                         borderWidth: 0,
                                         gridLineColor: '#ccc',
                                         gridLineWidth: 1.01,
-                                        borderColor: '#ccc',
                                         shadow: false
                                     },
                                     highlighter: {
+                                        //show: showHighlighter,
                                         show: true,
-                                        tooltipLocation: 'n',
+                                        formatString:'%s',
+                                        tooltipLocation:'n',
+                                        useAxesFormatters:false,
                                         tooltipAxes: 'y',
-                                        formatString: '%s',
                                         showMarker: false,
-                                        //bringSeriesToFront: true,
                                         showTooltip: true,
                                         fadeTooltip: false,
-                                        tooltipFadeSpeed: '1'
+                                        tooltipFadeSpeed: '1',
+                                        bringSeriesToFront: false
                                     },
-                                    legend: {
-                                        margin: 0,
-                                        padding: 0,
-                                        background: 'transparent',
-                                        textColor: '#666',
-                                        fontFamily: 'Arial, Verdana, Helvetica',
-                                        fontSize: '11px',
-                                        border: 'none',
-                                        show: true,
-                                        location: 'n',
-                                        showSwatch: true,
-                                        placement: 'outsideGrid',
-                                        renderer: jQuery.jqplot.EnhancedLegendRenderer,
-                                        rendererOptions: {
-                                            numberRows: 1,
-                                            disableIEFading: true
-                                        }
-                                    },
+                                    legend: $legendOpts,
                                     cursor: {
                                         show: false
                                     },
@@ -142,18 +187,7 @@ if(!class_exists('RJ_Quickcharts_Shortcode'))
                                         }
                                     },
                                     axes: {
-                                        xaxis: {
-                                            label: '',
-                                            renderer: jQuery.jqplot.CategoryAxisRenderer,
-                                            labelRenderer: jQuery.jqplot.CanvasAxisLabelRenderer,
-                                            tickOptions: {
-                                                mark: false
-                                            },
-                                            labelOptions: {
-                                                show: true,
-                                                fontSize: '14px'
-                                            }
-                                        },
+                                        xaxis: $xAxis,
                                         yaxis:{
                                             renderer: jQuery.jqplot.LogAxisRenderer,
                                             tickRenderer: jQuery.jqplot.CanvasAxisTickRenderer,

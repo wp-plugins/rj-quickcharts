@@ -41,7 +41,7 @@ echo '<div class="rjqc-area">';
                     <select>
                         <option value="line">Line</option>
                         <option value="bar">Bar</option>
-                        <!--<option value="pie">Pie</option>-->
+                        <option value="pie">Pie</option>
                     </select>
                 </label>
                 <label id="chart-legend"><span>Show Legend?</span><br />
@@ -114,7 +114,7 @@ echo "<link rel='stylesheet' href='".plugins_url('/css/jquery.jqplot.min.css', d
 echo '<!--[if lt IE 9]><script language="javascript" type="text/javascript" src="'.plugins_url("/js/excanvas.min.js", dirname(__FILE__)).'"></script><![endif]-->';
 echo "<script type='text/javascript' src='".plugins_url('/js/min/rjqc-frontend-full.min.js', dirname(__FILE__))."'></script>";
 
-echo "<script type='text/javascript' src='".plugins_url('/handsontable/dist/jquery.handsontable.full.js', dirname(__FILE__))."'></script>";
+echo "<script type='text/javascript' src='".plugins_url('/handsontable/dist/jquery.handsontable.js', dirname(__FILE__))."'></script>";
 echo "<script type='text/javascript' src='".plugins_url('/js/main.js', dirname(__FILE__))."'></script>";
 ?>
 
@@ -129,7 +129,8 @@ handsontable = jQuery('#dataTable');
 <script>
 (function ($) {
 
-    tooltipSuffix = '';
+    tooltipSuffix = '',
+    curChartType = 'line';
 
     theYData = [
         [
@@ -182,12 +183,16 @@ handsontable = jQuery('#dataTable');
     }, 5000);
     <? } ?>
 
-    tooltipSuffix = '<? echo $tooltip_suffix ?>';
-
-    //chart.destroy();
+    tooltipSuffix = '<? echo $tooltip_suffix ?>',
+    curChartType = '<? echo $type ?>';
 
     jQuery('#chart-type select').val('<? echo $type ?>');
     jQuery('#chart-legend select').val(<? echo $legend ?>);
+
+    chartOpts.chartLegend = <? echo $legend ?>;
+    chartOpts.chartTitle = '<? echo $title ?>';
+    chartOpts.chartYAxis = '<? echo $y_axis_title ?>';
+    chartOpts.chartType = '<? echo $type ?>';
 
     var hotSeries = <? echo $hotSeries ?>;
 
@@ -219,13 +224,16 @@ handsontable = jQuery('#dataTable');
     var buildYData = $.map(theNewData, function(item, i) {
         theYLabels.push(item[0]);
         $.each(item, function(x, xitem) {
-            if (x === 0) newArr = [];
+            if (chartOpts.chartType === 'pie') {
+            } else {
+                if (x === 0) newArr = [];
 
-            if (x > 0 && x < theNewData[0].length-1) {
-                newArr.push([theXCats[x-1],xitem]);
+                if (x > 0 && x < theNewData[0].length-1) {
+                    newArr.push([theXCats[x-1],xitem]);
+                }
+
+                if (x === theNewData[0].length-1) theYData.push(newArr);
             }
-
-            if (x === theNewData[0].length-1) theYData.push(newArr);
         });
     });
 
@@ -233,10 +241,16 @@ handsontable = jQuery('#dataTable');
         series.push({label:item});
     });
 
-    chartOpts.chartLegend = <? echo $legend ?>;
-    chartOpts.chartTitle = '<? echo $title ?>';
-    chartOpts.chartYAxis = '<? echo $y_axis_title ?>';
-    chartOpts.chartType = '<? echo $type ?>';
+    // Pie Chart?
+    if (chartOpts.chartType === 'pie') {
+        var theNewData = [];
+        for (var i = 0; i < theData.length; i++) {
+            if (i !== 0 && i !== theData.length-1) {
+                theNewData.push([theData[i][0], parseFloat(theData[i][1])]);
+            }
+        }
+        theYData = [theNewData];
+    }
 
     rjqc.buildChart(chartOpts, theYData, series);
 
@@ -272,17 +286,67 @@ handsontable = jQuery('#dataTable');
 
     // Change the type of chart
     jQuery('#chart-type select').change(function() {
-        chartOpts.chartType = this.value;
+        var val = this.value;
+        chartOpts.chartType = val;
 
         series = [];
-        var ser = handsontable.handsontable('getDataAtCol', 0);
-        for (var i = 0; i < ser.length; i++) {
-            if (ser[i] !== '') {
-                series.push({label:ser[i]});
+        if (val === 'pie') {
+            chartOpts.showHighlighter = false;
+
+            var hotData = [
+                ['', 'Data'],
+                ['Android', '74.4'],
+                ['iOS', '18.2'],
+                ['BlackBerry', '3.0'],
+                ['Microsoft', '2.9'],
+                ['Bada', '0.7'],
+                ['Symbian', '0.6']
+            ];
+
+            var hotSettings = {
+                minRows: 2,
+                maxCols: 2,
+                minSpareRows: 0,
+                minSpareCols: 0,
+                startRows: 10,
+                startCols: 2
+            };
+
+            rjqc.setUpHandsontable(hotData, hotSettings);
+        } else {
+            if (curChartType === 'pie') {
+                chartOpts.showHighlighter = true;
+
+                var hotData = [
+                    ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    ['Tokyo', 7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
+                    ['New York', -0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5],
+                    ['Berlin', -0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0],
+                    ['London', 3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+                ];
+
+                var hotSettings = {
+                    minRows: 2,
+                    minCols: 2,
+                    startRows: 10,
+                    startCols: 10,
+                    minSpareRows: 1,
+                    minSpareCols: 1
+                }
+
+                rjqc.setUpHandsontable(hotData, hotSettings);
+            } else {
+                var ser = handsontable.handsontable('getDataAtCol', 0);
+                for (var i = 0; i < ser.length; i++) {
+                    if (ser[i] !== '') {
+                        series.push({label:ser[i]});
+                    }
+                }
+                rjqc.buildChart(chartOpts, theYData, series);
             }
         }
 
-        rjqc.buildChart(chartOpts, theYData, series);
+        curChartType = val;
     });
 
     // Hide/Show the legend

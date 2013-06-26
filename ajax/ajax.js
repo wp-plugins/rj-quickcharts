@@ -15,6 +15,8 @@ jQuery(document).ready(function($) {
             totCols = handsontable.handsontable('countCols'),
             theData = handsontable.data('handsontable').getData();
 
+        var type = $('#chart-type option:selected').val();
+
         var theXCats = $.extend(true, [], theData[0]);
             theXCats = theXCats.splice(1,theXCats.length-2);
 
@@ -32,30 +34,40 @@ jQuery(document).ready(function($) {
             theYCats.push(item[0]);
         });
 
-        var theYLabels = [],
-            theYData = [];
-
-        var buildYData = $.map(theNewData, function(item, i) {
-            theYLabels.push(item[0]);
-            $.each(item, function(x, xitem) {
-                if (x === 0) newArr = [];
-
-                if (x > 0 && x < theNewData[0].length-1) {
-                    newArr.push([theXCats[x-1],xitem]);
+        if  (type === 'pie') {
+            var theNewData = [];
+            for (var i = 0; i < theData.length; i++) {
+                if (i !== 0 && i !== theData.length-1) {
+                    theNewData.push([theData[i][0], parseFloat(theData[i][1])]);
                 }
+            }
 
-                if (x === theNewData[0].length-1) theYData.push(newArr);
+            theYData = [theNewData];
+        } else {
+            var theYLabels = [],
+                theYData = [];
+
+            var buildYData = $.map(theNewData, function(item, i) {
+                theYLabels.push(item[0]);
+                $.each(item, function(x, xitem) {
+                    if (x === 0) newArr = [];
+
+                    if (x > 0 && x < theNewData[0].length-1) {
+                        newArr.push([theXCats[x-1],xitem]);
+                    }
+
+                    if (x === theNewData[0].length-1) theYData.push(newArr);
+                });
             });
-        });
 
-        seriesArr = [];
-        $.each(theYLabels, function(i, item) {
-            seriesArr.push({label:item});
-        });
+            seriesArr = [];
+            $.each(theYLabels, function(i, item) {
+                seriesArr.push({label:item});
+            });
+        }
 
         // Serialize all the variables
-        var type            = $('#chart-type option:selected').val(),
-            legend          = $('#chart-legend option:selected').val(),
+        var legend          = $('#chart-legend option:selected').val(),
             title           = $('#chart-title input').val(),
             tooltip_suffix  = $('#chart-tooltip-suffix input').val(),
             y_axis_title    = $('#chart-yaxis-title input').val(),

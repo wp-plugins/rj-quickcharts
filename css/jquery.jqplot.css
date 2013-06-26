@@ -271,6 +271,15 @@ table.jqplot-table-legend {
 }
 
 .jqplot-table-legend td, .jqplot-table-legend td {
-    border: none;
-    padding: 6px 10px 6px 0;
+    border: none!important;
+    padding: 6px 10px 6px 0!important;
+}
+
+.jqplot-highlighter-tooltip, .jqplot-canvasOverlay-tooltip {
+    padding: 3px 6px;
+    z-index: 999;
+}
+
+.jqplot-pie-series.jqplot-data-label {
+    color: white;
 }

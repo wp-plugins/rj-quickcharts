@@ -306,7 +306,7 @@ handsontable = jQuery('#dataTable');
             var hotSettings = {
                 minRows: 2,
                 maxCols: 2,
-                minSpareRows: 0,
+                minSpareRows: 1,
                 minSpareCols: 0,
                 startRows: 10,
                 startCols: 2

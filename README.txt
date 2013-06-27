@@ -30,6 +30,7 @@ RJ Quickcharts is licensed under the GPLv3 license.
 = What's Coming? =
 
 Custom fixed height and width
+Custom colors for charts
 
 = Feature Requests? =
 

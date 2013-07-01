@@ -17,7 +17,7 @@ if(!class_exists('RJ_Quickcharts_Menu'))
 
         public function register_my_custom_menu_page()
         {
-            if (current_user_can('edit_others_posts')) {
+            //if (current_user_can('edit_others_posts')) {
                 add_menu_page(
                     'RJ Quickcharts',
                     'RJ Quickcharts',
@@ -41,7 +41,7 @@ if(!class_exists('RJ_Quickcharts_Menu'))
                     'read',
                     'rj-quickcharts/admin/rjqc-admin-new.php'
                 );
-            }
+            //}
         }
 
         public function css_for_rjqc_admin_menu() {

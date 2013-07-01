@@ -44,7 +44,7 @@ Get in touch with me: [randyjensen.com](http://www.randyjensen.com)
 == Changelog ==
 
 = 0.4.2 =
-* Only Admins and Authors can edit charts now
+* Only Admins and Editors can edit charts now
 
 = 0.4.1 =
 * Pie chart support added

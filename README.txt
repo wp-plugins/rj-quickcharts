@@ -5,8 +5,8 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Tags: WordPress charts, charts, chart, graphs, graph, bar chart, bar graph, line chart, line graph, pie chart, pie graph, donut chart, donut graph, quickcharts, jqplot, highcharts
 Requires at least: 3.3
-Tested up to: 3.5
-Stable tag: 0.4.1
+Tested up to: 3.5.2
+Stable tag: 0.4.2
 
 Create incredible HTML5/JavaScript charts right inside WordPress with a few clicks.
 
@@ -30,7 +30,6 @@ RJ Quickcharts is licensed under the GPLv3 license.
 = What's Coming? =
 
 Custom fixed height and width
-Custom colors for charts
 
 = Feature Requests? =
 
@@ -43,6 +42,9 @@ Get in touch with me: [randyjensen.com](http://www.randyjensen.com)
 3. Bar Chart
 
 == Changelog ==
+
+= 0.4.2 =
+* Charts can only be edited by Admins and Editors
 
 = 0.4.1 =
 * Pie chart support added

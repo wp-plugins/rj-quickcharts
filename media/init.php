@@ -17,31 +17,29 @@ if(!class_exists('RJ_Quickcharts_Menu'))
 
         public function register_my_custom_menu_page()
         {
-            //if (current_user_can('edit_others_posts')) {
-                add_menu_page(
-                    'RJ Quickcharts',
-                    'RJ Quickcharts',
-                    'read',
-                    'rj-quickcharts/admin/rjqc-admin.php',
-                    '',
-                    '',
-                    '26.1'
-                );
-                add_submenu_page(
-                    'rj-quickcharts/admin/rjqc-admin.php',
-                    'My Charts',
-                    'My Charts',
-                    'read',
-                    'rj-quickcharts/admin/rjqc-admin.php'
-                );
-                add_submenu_page(
-                    'rj-quickcharts/admin/rjqc-admin.php',
-                    'New Chart',
-                    'New Chart',
-                    'read',
-                    'rj-quickcharts/admin/rjqc-admin-new.php'
-                );
-            //}
+            add_menu_page(
+                'RJ Quickcharts',
+                'RJ Quickcharts',
+                'read',
+                'rj-quickcharts/admin/rjqc-admin.php',
+                '',
+                '',
+                '26.1'
+            );
+            add_submenu_page(
+                'rj-quickcharts/admin/rjqc-admin.php',
+                'My Charts',
+                'My Charts',
+                'read',
+                'rj-quickcharts/admin/rjqc-admin.php'
+            );
+            add_submenu_page(
+                'rj-quickcharts/admin/rjqc-admin.php',
+                'New Chart',
+                'New Chart',
+                'read',
+                'rj-quickcharts/admin/rjqc-admin-new.php'
+            );
         }
 
         public function css_for_rjqc_admin_menu() {

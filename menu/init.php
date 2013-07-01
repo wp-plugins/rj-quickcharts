@@ -11,8 +11,10 @@ if(!class_exists('RJ_Quickcharts_Menu'))
 
         public function init()
         {
-            add_action('admin_menu', array(&$this, 'register_my_custom_menu_page'));
-            add_action('admin_footer', array(&$this, 'css_for_rjqc_admin_menu'));
+            if ( current_user_can('edit_others_posts') ) {
+                add_action('admin_menu', array(&$this, 'register_my_custom_menu_page'));
+                add_action('admin_footer', array(&$this, 'css_for_rjqc_admin_menu'));
+            }
         }
 
         public function register_my_custom_menu_page()

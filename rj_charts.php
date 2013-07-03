@@ -3,7 +3,7 @@
 Plugin Name: RJ Quickcharts
 Plugin URI: http://www.randyjensen.com
 Description: Easily create charts for your WordPress site. Line charts, bar charts and pie charts currently supported.
-Version: 0.4.2
+Version: 0.4.3
 Author: Randy Jensen
 Author URI: http://www.randyjensen.com
 */
@@ -14,7 +14,7 @@ if(!class_exists('RJ_Quickcharts'))
     global $rjqc_db_version;
     global $table_name;
 
-    $rjqc_db_version = '0.4.2';
+    $rjqc_db_version = '0.4.3';
     $table_name = $wpdb->prefix . 'rj_quickcharts';
 
 	class RJ_Quickcharts
@@ -52,6 +52,7 @@ if(!class_exists('RJ_Quickcharts'))
 		public static function activate()
 		{
             global $table_name;
+            global $rjqc_db_version;
 
             $sql = "CREATE TABLE $table_name (
                 id int(16) NOT NULL AUTO_INCREMENT,
@@ -65,11 +66,39 @@ if(!class_exists('RJ_Quickcharts'))
                 legendOn int(0) NOT NULL,
                 series longtext NOT NULL,
                 hotSeries longtext NOT NULL,
+                opts longtext NOT NULL,
                 UNIQUE KEY id (id)
             );";
 
             require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
             dbDelta( $sql );
+
+            // Is there an upgrade? Make sure they have the latest database
+            $installed_ver = get_option("rjqc_db_version");
+
+            if($installed_ver != $rjqc_db_version) {
+
+                $sql = "CREATE TABLE $table_name (
+                    id int(16) NOT NULL AUTO_INCREMENT,
+                    created datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+                    type char(50) NOT NULL DEFAULT 'line',
+                    title varchar(200) NOT NULL,
+                    subtitle varchar(200) NOT NULL,
+                    tooltipSuffix varchar(200) NOT NULL,
+                    yAxisTitleText varchar(200) NOT NULL,
+                    xAxisCats longtext NOT NULL,
+                    legendOn int(0) NOT NULL,
+                    series longtext NOT NULL,
+                    hotSeries longtext NOT NULL,
+                    opts longtext NOT NULL,
+                    UNIQUE KEY id (id)
+                );";
+
+                require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+                dbDelta($sql);
+
+                update_option("rjqc_db_version", $rjqc_db_version);
+            }
 		}
 
         public function plugin_activation() {
@@ -95,7 +124,15 @@ if(class_exists('RJ_Quickcharts'))
 	register_activation_hook(__FILE__, array('RJ_Quickcharts', 'activate'));
 	register_deactivation_hook(__FILE__, array('RJ_Quickcharts', 'deactivate'));
 
-	$rj_quickcharts = new RJ_Quickcharts();
+    function rjqc_update_db_check() {
+        global $rjqc_db_version;
+        if (get_site_option( 'rjqc_db_version' ) != $rjqc_db_version) {
+            RJ_Quickcharts::activate();
+        }
+    }
+    add_action( 'plugins_loaded', 'rjqc_update_db_check' );
+
+    $rj_quickcharts = new RJ_Quickcharts();
 
     // Add a link to the settings page onto the plugin page
     /*if(isset($wp_plugin_template))

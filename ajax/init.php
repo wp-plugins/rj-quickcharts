@@ -55,10 +55,9 @@ if(!class_exists('RJ_Quickcharts_Ajax'))
                 $tooltip_suffix = $_POST['tooltip_suffix'];
                 $y_axis_title   = $_POST['y_axis_title'];
                 $y_axis_cats    = json_encode($_POST['y_axis_cats']);
-                //$series         = json_encode($_POST['series'], JSON_NUMERIC_CHECK);
-                //$hotSeries      = json_encode($_POST['hotSeries'], JSON_NUMERIC_CHECK);
                 $series         = json_encode($full_series);
                 $hotSeries      = json_encode($full_hot_series);
+                $opts           = json_encode($_POST['opts']);
 
                 $rows = $wpdb->insert(
                                 $table_name, array(
@@ -71,7 +70,8 @@ if(!class_exists('RJ_Quickcharts_Ajax'))
                                     'yAxisTitleText' => $y_axis_title,
                                     'legendOn' => $legend,
                                     'series' => $series,
-                                    'hotSeries' => $hotSeries )
+                                    'hotSeries' => $hotSeries,
+                                    'opts' => $opts )
                                 );
 
                 $new_id = mysql_insert_id();
@@ -102,6 +102,7 @@ if(!class_exists('RJ_Quickcharts_Ajax'))
                 $legend         = $chart[0]->legendOn;
                 $series         = $chart[0]->series;
                 $hotSeries      = $chart[0]->hotSeries;
+                $opts           = $chart[0]->opts;
 
                 $wpdb->insert(
                     $table_name, array(
@@ -114,7 +115,8 @@ if(!class_exists('RJ_Quickcharts_Ajax'))
                         'yAxisTitleText' => $y_axis_title,
                         'legendOn' => $legend,
                         'series' => $series,
-                        'hotSeries' => $hotSeries
+                        'hotSeries' => $hotSeries,
+                        'opts' => $opts
                     )
                 );
 
@@ -130,7 +132,8 @@ if(!class_exists('RJ_Quickcharts_Ajax'))
                         "yAxisTitleText":'.json_encode($y_axis_title).',
                         "legendOn":'.json_encode($legend).',
                         "series":'.json_encode($series).',
-                        "hotSeries":'.json_encode($hotSeries).'
+                        "hotSeries":'.json_encode($hotSeries).',
+                        "opts":'.json_encode($opts).'
                     }';
                 die;
             }
@@ -176,10 +179,9 @@ if(!class_exists('RJ_Quickcharts_Ajax'))
                         'yAxisTitleText'=> $_POST['y_axis_title'],
                         'xAxisCats'     => json_encode($_POST['y_axis_cats']),
                         'legendOn'      => (int)$_POST['legend'],
-                        //'series'      => json_encode($_POST['series'], JSON_NUMERIC_CHECK),
-                        //'hotSeries'   => json_encode($_POST['hotSeries'], JSON_NUMERIC_CHECK)
                         'series'        => json_encode($full_series),
-                        'hotSeries'     => json_encode($full_hot_series)
+                        'hotSeries'     => json_encode($full_hot_series),
+                        'opts'          => json_encode($_POST['opts'])
                     ),
                     array('id'=>$id)
                 );

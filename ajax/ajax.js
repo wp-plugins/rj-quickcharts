@@ -71,9 +71,14 @@ jQuery(document).ready(function($) {
             title           = $('#chart-title input').val(),
             tooltip_suffix  = $('#chart-tooltip-suffix input').val(),
             y_axis_title    = $('#chart-yaxis-title input').val(),
+            height          = $('#chart-height input').val(),
             y_axis_cats     = theYCats,
             series          = theYData,
             hotSeries       = theData;
+
+        if (height === '') {
+            height = 300;
+        }
 
         var data = {
             action: action,
@@ -84,7 +89,10 @@ jQuery(document).ready(function($) {
             y_axis_title: y_axis_title,
             y_axis_cats: y_axis_cats,
             series: series,
-            hotSeries: theData
+            hotSeries: theData,
+            opts: {
+                height: height
+            }
         };
 
         return data;

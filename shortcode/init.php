@@ -40,6 +40,8 @@ if(!class_exists('RJ_Quickcharts_Shortcode'))
                 $series     = $chart[0]->series;
                 $hotSeries  = $chart[0]->hotSeries;
                 $chartFill  = false;
+                $opts       = json_decode($chart[0]->opts);
+                $chartHeight= $opts->height;
 
                 if ($type == "pie") {
                     $xAxis      = "{}";
@@ -94,7 +96,7 @@ if(!class_exists('RJ_Quickcharts_Shortcode'))
                                     }";
                 }
 
-                $return_string .= "<div id='rjqc_container_$id'></div>";
+                $return_string .= "<div id='rjqc_container_$id' style='height:".$chartHeight."px'></div>";
                 $return_string .= "<script>";
                 $return_string .= "(function ($) {
 

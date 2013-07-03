@@ -1,11 +1,10 @@
 <?
-//wp_enqueue_script('ajax-script', plugins_url( '/main.js?v='.rand() ), array('jquery'));
-
 $type           = '';
 $title          = '';
 $sub_title      = '';
 $tooltip_suffix = '';
 $y_axis_title   = '';
+$chart_height   = '300';
 
 $id = $_GET['id'];
 if ($id) {
@@ -23,6 +22,8 @@ if ($id) {
     $legend         = $chart[0]->legendOn;
     $series         = $chart[0]->series;
     $hotSeries      = $chart[0]->hotSeries;
+    $opts           = json_decode($chart[0]->opts);
+    $chart_height   = $opts->height;
 
     echo '<input id="rjqc-chart-id" type="hidden" value="'.$id.'" />';
 
@@ -64,6 +65,9 @@ echo '<div class="rjqc-area">';
                 <label id="chart-tooltip-suffix"><span>Tooltip Suffix</span><br />
                     <input type="text" placeholder="&deg;C" value="'.$tooltip_suffix.'" />
                 </label>
+                <label id="chart-height"><span>Chart Height (leave empty for default)</span><br />
+                    <input type="text" placeholder="300" value="'.$chart_height.'" />px
+                </label>
             </form>
             <div class="cf"></div>
         </div>
@@ -89,7 +93,7 @@ echo '<div class="rjqc-area">';
     <div class="postbox">
         <h3 class="hndle"><span>Step 3: Preview</span></h3>
         <div class="inside">
-                <div id="rjqc-chart" style="height:300px;"></div>
+                <div id="rjqc-chart" style="height:'.$chart_height.'px;"></div>
             <div class="cf"></div>
         </div>
     </div>
@@ -384,6 +388,17 @@ handsontable = jQuery('#dataTable');
     // Bind tooltip handler
     jQuery("#rjqc-chart").bind('jqplotDataMouseOver', function (ev, seriesIndex, pointIndex, data) {
         jQuery(".jqplot-highlighter-tooltip").html('' + data[1] + tooltipSuffix);
+    });
+
+    // Change the chart Height
+    jQuery('#chart-height input').keyup(function() {
+        chartHeight = jQuery(this).val();
+        if (chartHeight === '') {
+            jQuery('#rjqc-chart').height('300px');
+        } else {
+            jQuery('#rjqc-chart').height(chartHeight+'px');
+        }
+        chart.replot();
     });
 
     <? if ($_GET['id']) { ?>

@@ -18,6 +18,10 @@ Create incredible HTML5/JavaScript charts right inside WordPress with a few clic
 
 RJ Quickcharts is licensed under the GPLv3 license.
 
+= Like This Plugin? =
+
+Make sure to leave a 5 star review! If you have any issues, make sure to get in touch : [randyjensen.com](http://www.randyjensen.com)
+
 == Installation ==
 
 1. Install RJ Quickcharts either via the WordPress.org plugin directory, or by uploading the files to your server

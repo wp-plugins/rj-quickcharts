@@ -5,6 +5,7 @@ $sub_title      = '';
 $tooltip_suffix = '';
 $y_axis_title   = '';
 $chart_height   = '300';
+$series_colors = array('#40C0CB', '#AEE239', '#CC333F', '#EB6841', '#2A363B','#F9D423','#00DFFC','#FF847C','#F9F2E7','#E84A5F');
 
 $id = $_GET['id'];
 if ($id) {
@@ -24,6 +25,7 @@ if ($id) {
     $hotSeries      = $chart[0]->hotSeries;
     $opts           = json_decode($chart[0]->opts);
     $chart_height   = $opts->height;
+    $series_colors  = $opts->seriesColors;
 
     echo '<input id="rjqc-chart-id" type="hidden" value="'.$id.'" />';
 
@@ -68,6 +70,20 @@ echo '<div class="rjqc-area">';
                 <label id="chart-height"><span>Chart Height (leave empty for default)</span><br />
                     <input type="text" placeholder="300" value="'.$chart_height.'" />px
                 </label>
+                <div class="cf"></div>
+                <p id="change-chart-colors">Change Chart Colors?</p>
+                <div id="change-chart-colors-area">
+                    <label>1. <input type="text" class="chart-color" id="chart-color-1" data-color="1" value="'.$series_colors[0].'" /></label>
+                    <label>2. <input type="text" class="chart-color" id="chart-color-2" data-color="2" value="'.$series_colors[1].'" /></label>
+                    <label>3. <input type="text" class="chart-color" id="chart-color-3" data-color="3" value="'.$series_colors[2].'" /></label>
+                    <label>4. <input type="text" class="chart-color" id="chart-color-4" data-color="4" value="'.$series_colors[3].'" /></label>
+                    <label>5. <input type="text" class="chart-color" id="chart-color-5" data-color="5" value="'.$series_colors[4].'" /></label>
+                    <label>6. <input type="text" class="chart-color" id="chart-color-6" data-color="6" value="'.$series_colors[5].'" /></label>
+                    <label>7. <input type="text" class="chart-color" id="chart-color-7" data-color="7" value="'.$series_colors[6].'" /></label>
+                    <label>8. <input type="text" class="chart-color" id="chart-color-8" data-color="8" value="'.$series_colors[7].'" /></label>
+                    <label>9. <input type="text" class="chart-color" id="chart-color-9" data-color="9" value="'.$series_colors[8].'" /></label>
+                    <label>10. <input type="text" class="chart-color" id="chart-color-10" data-color="10" value="'.$series_colors[9].'" /></label>
+                </div>
             </form>
             <div class="cf"></div>
         </div>
@@ -115,10 +131,12 @@ echo '</div>';
 echo "<link rel='stylesheet' href='".plugins_url('/main.css?v='.rand(), dirname(__FILE__))."' type='text/css' media='all' />";
 echo "<link rel='stylesheet' href='".plugins_url('/handsontable/dist/jquery.handsontable.full.css', dirname(__FILE__))."' type='text/css' media='all' />";
 echo "<link rel='stylesheet' href='".plugins_url('/css/jquery.jqplot.min.css', dirname(__FILE__))."' type='text/css' media='all' />";
+echo "<link rel='stylesheet' href='".plugins_url('/css/spectrum.css', dirname(__FILE__))."' type='text/css' media='all' />";
 echo '<!--[if lt IE 9]><script language="javascript" type="text/javascript" src="'.plugins_url("/js/excanvas.min.js", dirname(__FILE__)).'"></script><![endif]-->';
 echo "<script type='text/javascript' src='".plugins_url('/js/min/rjqc-frontend-full.min.js', dirname(__FILE__))."'></script>";
 
 echo "<script type='text/javascript' src='".plugins_url('/handsontable/dist/jquery.handsontable.js', dirname(__FILE__))."'></script>";
+echo "<script type='text/javascript' src='".plugins_url('/js/spectrum.js', dirname(__FILE__))."'></script>";
 echo "<script type='text/javascript' src='".plugins_url('/js/main.js', dirname(__FILE__))."'></script>";
 ?>
 
@@ -197,6 +215,7 @@ handsontable = jQuery('#dataTable');
     chartOpts.chartTitle = '<? echo $title ?>';
     chartOpts.chartYAxis = '<? echo $y_axis_title ?>';
     chartOpts.chartType = '<? echo $type ?>';
+    chartOpts.seriesColors = <? echo json_encode($series_colors) ?>;
 
     var hotSeries = <? echo $hotSeries ?>;
 
@@ -274,6 +293,7 @@ handsontable = jQuery('#dataTable');
 <? } ?>
 
 <script>
+(function ($) {
     //
     // Event Handlers
     //
@@ -408,4 +428,39 @@ handsontable = jQuery('#dataTable');
         }, 150);
     }
     <? } ?>
+
+    //
+    // Color Pallete
+    //
+    var spectrumObj = function(theColor, theClass) {
+        return {
+            color: theColor,
+            flat: false,
+            showInput: true,
+            showAlpha: false,
+            clickoutFiresChange: true,
+            cancelText: "Cancel",
+            chooseText: "Select",
+            className: "choose-color-"+theClass,
+            preferredFormat: "hex",
+            change: function(color) {
+                //color.toHexString();
+                var colors = rjqc.getColorArray();
+                chartOpts.seriesColors = colors;
+                rjqc.buildChart(chartOpts, theYData, series);
+            }
+        }
+    };
+    jQuery.each(jQuery(".chart-color"), function(i, item) {
+        jQuery("#"+item.id).spectrum(spectrumObj(jQuery(item).val(), jQuery(item).data('color')));
+    });
+    jQuery('#change-chart-colors').click(function() {
+        var area = document.getElementById('change-chart-colors-area');
+        if (jQuery(area).is(':hidden')) {
+            area.style.display = 'block';
+        } else {
+            area.style.display = 'none';
+        }
+    });
+})(jQuery);
 </script>

@@ -17,6 +17,14 @@
             });
         },
 
+        getColorArray: function() {
+            var colors = [];
+            $.each($('.chart-color'), function() {
+                colors.push($(this).val());
+            });
+            return colors;
+        },
+
         setUpHandsontable: function(data, settings) {
             if (!data) {
                 var data = [
@@ -157,6 +165,7 @@
             chartYAxis      = opts.chartYAxis || 'Temperature (°C)';
             chartFill       = opts.chartFill || false;
             chartType       = opts.chartType || 'line';
+            chartColors     = opts.seriesColors || ['#40C0CB', '#AEE239', '#CC333F', '#EB6841', '#2A363B','#F9D423','#00DFFC','#FF847C','#F9F2E7','#E84A5F'];
             showHighlighter = (opts.showHighlighter === false) ? false : true;
             xAxis           = {
                                 label: '',
@@ -268,7 +277,7 @@
                     show: false
                 },
                 series: series,
-                seriesColors:['#40C0CB', '#AEE239', '#CC333F', '#EB6841', '#2A363B','#F9D423','#00DFFC','#FF847C','#F9F2E7','#E84A5F'],
+                seriesColors: chartColors,
                 axesDefaults: {
                     tickRenderer: jQuery.jqplot.CanvasAxisTickRenderer,
                     tickOptions: {

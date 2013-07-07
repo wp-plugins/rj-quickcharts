@@ -97,3 +97,17 @@
  .js .rjqc-area .postbox .hndle {
     cursor: default;
 }
+
+#change-chart-colors {
+    font-weight: bold;
+}
+
+#change-chart-colors:hover {
+    text-decoration: underline;
+    color: gray;
+    cursor: pointer;
+}
+
+#change-chart-colors-area {
+    display: none;
+}

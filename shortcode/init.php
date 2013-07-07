@@ -27,21 +27,28 @@ if(!class_exists('RJ_Quickcharts_Shortcode'))
             $chart = $wpdb->get_results($sql);
 
             if ($chart) {
-                $id         = $chart[0]->id;
-                $created    = $chart[0]->created;
-                $type       = $chart[0]->type;
-                $title      = $chart[0]->title;
-                $subtitle   = $chart[0]->subtitle;
-                $tooltipSuffix = $chart[0]->tooltipSuffix;
-                $yAxisCats  = $chart[0]->xAxisCats;
-                $yAxisText  = $chart[0]->yAxisTitleText;
-                $legend     = $chart[0]->legendOn;
-                $legend     = ($legend == 1) ? "true" : "false";
-                $series     = $chart[0]->series;
-                $hotSeries  = $chart[0]->hotSeries;
-                $chartFill  = false;
-                $opts       = json_decode($chart[0]->opts);
-                $chartHeight= $opts->height;
+                $id             = $chart[0]->id;
+                $created        = $chart[0]->created;
+                $type           = $chart[0]->type;
+                $title          = $chart[0]->title;
+                $subtitle       = $chart[0]->subtitle;
+                $tooltipSuffix  = $chart[0]->tooltipSuffix;
+                $yAxisCats      = $chart[0]->xAxisCats;
+                $yAxisText      = $chart[0]->yAxisTitleText;
+                $legend         = $chart[0]->legendOn;
+                $legend         = ($legend == 1) ? "true" : "false";
+                $series         = $chart[0]->series;
+                $hotSeries      = $chart[0]->hotSeries;
+                $chartFill      = false;
+                $opts           = json_decode($chart[0]->opts);
+                $chartHeight    = $opts->height;
+                $seriesColors   = $opts->seriesColors;
+
+                if (!$seriesColors) {
+                    $seriesColors = "['#40C0CB', '#AEE239', '#CC333F', '#EB6841', '#2A363B','#F9D423','#00DFFC','#FF847C','#F9F2E7','#E84A5F']";
+                } else {
+                    $seriesColors = json_encode($seriesColors);
+                }
 
                 if ($type == "pie") {
                     $xAxis      = "{}";
@@ -168,7 +175,7 @@ if(!class_exists('RJ_Quickcharts_Shortcode'))
                                         show: false
                                     },
                                     series: yAxisCats,
-                                    seriesColors:['#40C0CB', '#AEE239', '#CC333F', '#EB6841', '#2A363B','#F9D423','#00DFFC','#FF847C','#F9F2E7','#E84A5F'],
+                                    seriesColors: $seriesColors,
                                     axesDefaults: {
                                         tickRenderer: jQuery.jqplot.CanvasAxisTickRenderer,
                                         tickOptions: {

@@ -66,6 +66,11 @@ jQuery(document).ready(function($) {
             });
         }
 
+        var colors = [];
+        $.each($('.chart-color'), function() {
+            colors.push($(this).val());
+        });
+
         // Serialize all the variables
         var legend          = $('#chart-legend option:selected').val(),
             title           = $('#chart-title input').val(),
@@ -74,7 +79,8 @@ jQuery(document).ready(function($) {
             height          = $('#chart-height input').val(),
             y_axis_cats     = theYCats,
             series          = theYData,
-            hotSeries       = theData;
+            hotSeries       = theData,
+            seriesColors    = colors;
 
         if (height === '') {
             height = 300;
@@ -91,7 +97,8 @@ jQuery(document).ready(function($) {
             series: series,
             hotSeries: theData,
             opts: {
-                height: height
+                height: height,
+                seriesColors: seriesColors
             }
         };
 

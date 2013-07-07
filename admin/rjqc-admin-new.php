@@ -25,7 +25,9 @@ if ($id) {
     $hotSeries      = $chart[0]->hotSeries;
     $opts           = json_decode($chart[0]->opts);
     $chart_height   = $opts->height;
-    $series_colors  = $opts->seriesColors;
+    if ($opts->seriesColors) {
+        $series_colors = $opts->seriesColors;
+    }
 
     echo '<input id="rjqc-chart-id" type="hidden" value="'.$id.'" />';
 
@@ -71,7 +73,7 @@ echo '<div class="rjqc-area">';
                     <input type="text" placeholder="300" value="'.$chart_height.'" />px
                 </label>
                 <div class="cf"></div>
-                <!--<p id="change-chart-colors">Change Chart Colors?</p>
+                <p id="change-chart-colors">Change Chart Colors?</p>
                 <div id="change-chart-colors-area">
                     <label>1. <input type="text" class="chart-color" id="chart-color-1" data-color="1" value="'.$series_colors[0].'" /></label>
                     <label>2. <input type="text" class="chart-color" id="chart-color-2" data-color="2" value="'.$series_colors[1].'" /></label>
@@ -83,7 +85,7 @@ echo '<div class="rjqc-area">';
                     <label>8. <input type="text" class="chart-color" id="chart-color-8" data-color="8" value="'.$series_colors[7].'" /></label>
                     <label>9. <input type="text" class="chart-color" id="chart-color-9" data-color="9" value="'.$series_colors[8].'" /></label>
                     <label>10. <input type="text" class="chart-color" id="chart-color-10" data-color="10" value="'.$series_colors[9].'" /></label>
-                </div>-->
+                </div>
             </form>
             <div class="cf"></div>
         </div>

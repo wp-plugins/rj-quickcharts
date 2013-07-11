@@ -106,14 +106,12 @@ if(!class_exists('RJ_Quickcharts_Shortcode'))
                 $return_string .= "<div id='rjqc_container_$id' style='height:".$chartHeight."px'></div>";
                 $return_string .= "<script>";
                 $return_string .= "(function ($) {
-
                     tooltipSuffix = '$tooltipSuffix';
                     yAC = $yAxisCats;
                     yAxisCats = [];
                     for (i=0;i<yAC.length;i++) {
                         yAxisCats.push({label:yAC[i]});
                     }
-
                 ";
 
                 $return_string .= "switch ('$type') {
@@ -223,7 +221,7 @@ if(!class_exists('RJ_Quickcharts_Shortcode'))
                                 }
 
                                 jQuery('#rjqc_container_$id').bind('jqplotDataMouseOver', function (ev, seriesIndex, pointIndex, data) {
-                                    jQuery('.jqplot-highlighter-tooltip').html('' + data[1] + tooltipSuffix);
+                                    jQuery('.jqplot-highlighter-tooltip').html('' + data[1] + '$tooltipSuffix');
                                 });
                                 ";
 

@@ -53,7 +53,7 @@ jQuery(document).ready(function($) {
                     if (x === 0) newArr = [];
 
                     if (x > 0 && x < theNewData[0].length-1) {
-                        newArr.push([theXCats[x-1],xitem]);
+                        newArr.push([theXCats[x-1],parseFloat(xitem)]);
                     }
 
                     if (x === theNewData[0].length-1) theYData.push(newArr);

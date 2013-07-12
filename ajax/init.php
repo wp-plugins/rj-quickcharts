@@ -31,7 +31,7 @@ if(!class_exists('RJ_Quickcharts_Ajax'))
                 $full_series = $_POST['series'];
                 foreach ($full_series as $index => $serie) {
                     foreach ($serie as $i => $s) {
-                        $newInt = intval($s[1]);
+                        $newInt = floatval($s[1]);
                         $full_series[$index][$i][1] = $newInt;
                     }
                 }
@@ -41,7 +41,7 @@ if(!class_exists('RJ_Quickcharts_Ajax'))
                     if ($index != 0 && $index != count($full_hot_series)-1) {
                         foreach ($serie as $i => $s) {
                             if ($i != 0 && $i != count($serie)-1) {
-                                $newInt = intval($s);
+                                $newInt = floatval($s);
                                 $full_hot_series[$index][$i] = $newInt;
                             }
                         }
@@ -150,7 +150,7 @@ if(!class_exists('RJ_Quickcharts_Ajax'))
 
                 foreach ($full_series as $index => $serie) {
                     foreach ($serie as $i => $s) {
-                        $newInt = intval($s[1]);
+                        $newInt = floatval($s[1]);
                         $full_series[$index][$i][1] = $newInt;
                     }
                 }
@@ -160,7 +160,7 @@ if(!class_exists('RJ_Quickcharts_Ajax'))
                     if ($index != 0 && $index != count($full_hot_series)-1) {
                         foreach ($serie as $i => $s) {
                             if ($i != 0 && $i != count($serie)-1) {
-                                $newInt = intval($s);
+                                $newInt = floatval($s);
                                 $full_hot_series[$index][$i] = $newInt;
                             }
                         }

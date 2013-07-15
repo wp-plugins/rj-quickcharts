@@ -283,3 +283,21 @@ table.jqplot-table-legend {
 .jqplot-pie-series.jqplot-data-label {
     color: white;
 }
+
+.jqplot-target table,
+.jqplot-target .content table,
+.jqplot-table-legend {
+    min-width: inherit!important;
+}
+
+.jqplot-table-legend:hover,
+.jqplot-table-legend td:hover {
+    background: none!important;
+}
+
+.jqplot-table-legend tbody tr:hover th.jqplot-table-legend-swatch,
+.jqplot-table-legend tbody tr:hover th.jqplot-table-legend-label,
+.jqplot-table-legend tbody tr:hover td.jqplot-table-legend-swatch,
+.jqplot-table-legend tbody tr:hover td.jqplot-table-legend-label {
+    background: none!important;
+}

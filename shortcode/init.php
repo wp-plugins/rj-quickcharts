@@ -129,7 +129,7 @@ if(!class_exists('RJ_Quickcharts_Shortcode'))
                                             break;
                                     }";
 
-                $return_string .= "chart = jQuery.jqplot('rjqc_container_$id', $series, {
+                $return_string .= "chart_$id = jQuery.jqplot('rjqc_container_$id', $series, {
                                     seriesDefaults: {
                                         renderer: r,
                                         shadow: false,
@@ -222,6 +222,9 @@ if(!class_exists('RJ_Quickcharts_Shortcode'))
 
                                 jQuery('#rjqc_container_$id').bind('jqplotDataMouseOver', function (ev, seriesIndex, pointIndex, data) {
                                     jQuery('.jqplot-highlighter-tooltip').html('' + data[1] + '$tooltipSuffix');
+                                });
+                                $(window).resize(function() {
+                                    chart_$id.replot( { resetAxes: true } );
                                 });
                                 ";
 

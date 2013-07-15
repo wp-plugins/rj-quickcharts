@@ -6,7 +6,7 @@ License URI: http://www.gnu.org/licenses/gpl.html
 Tags: WordPress charts, charts, chart, graphs, graph, bar chart, bar graph, line chart, line graph, pie chart, pie graph, donut chart, donut graph, quickcharts, jqplot, highcharts
 Requires at least: 3.0
 Tested up to: 3.5.2
-Stable tag: 0.5.2
+Stable tag: 0.5.3
 
 Create incredible HTML5/JavaScript charts right inside WordPress with a few clicks.
 
@@ -31,6 +31,9 @@ Make sure to leave a 5 star review! If you have any issues, make sure to get in 
 
 == Frequently Asked Questions ==
 
+= Floating Point Numbers Not Being Saved =
+* Try deleting the plugin and re-installing it. Your chart data will not be deleted.
+
 = In the Works =
 * Localization
 * New Design
@@ -46,6 +49,10 @@ Get in touch with me: [randyjensen.com](http://www.randyjensen.com)
 3. Bar Chart
 
 == Changelog ==
+
+= 0.5.3 =
+* Charts now resize automatically when window is resized if theme is reponsive
+* More styling fixes to work with more themes
 
 = 0.5.2 =
 * Fixed bug where decimals were getting lost

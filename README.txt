@@ -8,11 +8,35 @@ Requires at least: 3.0
 Tested up to: 3.5.2
 Stable tag: 0.5.3
 
-Create incredible HTML5/JavaScript charts right inside WordPress with a few clicks.
+Build Complex, Powerful HTML5 Bar Charts, Line Charts and Pie Charts in Just Minutes. No Programming Knowledge Required!
 
 == Description ==
 
-Create incredible HTML5/JavaScript charts right inside WordPress with a few clicks. Bar charts, Line charts and Pie charts are currently supported.
+Build Complex, Powerful HTML5 Charts in Just Minutes.
+
+RJ Quick Charts is the only WordPress plugin available that allows users to easily enter data that is immediately built out into a chart below as they type. Quick Charts uses all native WordPress UI so it feels right at home without adding any excessive bloat to your site.
+
+Build and publish your chart in minutes by:
+
+1. Selecting a chart type (Line Chart, Bar Chart or Pie Chart)
+2. Choosing a few options 
+3. Add your data!
+
+The chart will be dynamically built out and updated as you type. Once you’re done, just save it and add it to any Post, Page or Custom Post Type by going to Add Media -> Insert Quick Chart.
+
+= Features =
+* Create bar, pie, donut and line charts with simple Intuitive UI
+* Charts are HTML, CSS and JavaScript so they will work on any modern mobile device
+* Charts will resize dynamically with responsive themes
+* Enter your data directly into the Excel-like table without having to know options or long short code sequences to build your chart
+* Style the charts with custom colors of your choice
+* Custom chart height
+* Add a chart legend
+* Embed your charts by using the built-in Wordpress "Add Media" button on any Post, Page or Custom Post Type
+* Utilizes built-in WordPress core functionality
+* Custom chart title and Y Axis title
+* Tooltips hover on chart data with custom suffix
+* Working preview of chart as you build it
 
 = License =
 

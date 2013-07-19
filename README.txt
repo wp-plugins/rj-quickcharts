@@ -6,7 +6,7 @@ License URI: http://www.gnu.org/licenses/gpl.html
 Tags: WordPress charts, charts, chart, graphs, graph, bar chart, bar graph, line chart, line graph, pie chart, pie graph, donut chart, donut graph, quickcharts, jqplot, highcharts
 Requires at least: 3.0
 Tested up to: 3.5.2
-Stable tag: 0.5.3
+Stable tag: 0.5.4
 
 Build Complex, Powerful HTML5 Bar Charts, Line Charts and Pie Charts in Just Minutes. No Programming Knowledge Required!
 
@@ -73,6 +73,9 @@ Get in touch with me: [randyjensen.com](http://www.randyjensen.com)
 3. Bar Chart
 
 == Changelog ==
+
+= 0.5.4 =
+* Updated readme with feature list
 
 = 0.5.3 =
 * Charts now resize automatically when window is resized if theme is reponsive

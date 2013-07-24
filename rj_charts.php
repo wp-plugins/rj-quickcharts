@@ -3,7 +3,7 @@
 Plugin Name: RJ Quickcharts
 Plugin URI: http://www.randyjensen.com
 Description: Easily create charts for your WordPress site. Line charts, bar charts and pie charts currently supported.
-Version: 0.5.4
+Version: 0.5.5
 Author: Randy Jensen
 Author URI: http://www.randyjensen.com
 */
@@ -14,7 +14,7 @@ if(!class_exists('RJ_Quickcharts'))
     global $rjqc_db_version;
     global $table_name;
 
-    $rjqc_db_version = '0.5.4';
+    $rjqc_db_version = '0.5.5';
     $table_name = $wpdb->prefix . 'rj_quickcharts';
 
 	class RJ_Quickcharts

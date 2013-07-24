@@ -6,7 +6,7 @@ License URI: http://www.gnu.org/licenses/gpl.html
 Tags: WordPress charts, charts, chart, graphs, graph, bar chart, bar graph, line chart, line graph, pie chart, pie graph, donut chart, donut graph, quickcharts, jqplot, highcharts
 Requires at least: 3.0
 Tested up to: 3.5.2
-Stable tag: 0.5.4
+Stable tag: 0.5.5
 
 Build Complex, Powerful HTML5 Bar Charts, Line Charts and Pie Charts in Just Minutes. No Programming Knowledge Required!
 
@@ -19,7 +19,7 @@ RJ Quick Charts is the only WordPress plugin available that allows users to easi
 Build and publish your chart in minutes by:
 
 1. Selecting a chart type (Line Chart, Bar Chart or Pie Chart)
-2. Choosing a few options 
+2. Choosing a few options
 3. Add your data!
 
 The chart will be dynamically built out and updated as you type. Once you’re done, just save it and add it to any Post, Page or Custom Post Type by going to Add Media -> Insert Quick Chart.
@@ -73,6 +73,9 @@ Get in touch with me: [randyjensen.com](http://www.randyjensen.com)
 3. Bar Chart
 
 == Changelog ==
+
+= 0.5.5 =
+* Bug fix in the way the legends and tooltips are handled
 
 = 0.5.4 =
 * Updated readme with feature list

@@ -215,13 +215,13 @@ if(!class_exists('RJ_Quickcharts_Shortcode'))
 
                                 // Handle legend hiding on the client
                                 if($legend === false) {
-                                    jQuery('.jqplot-table-legend').hide();
+                                    jQuery('#rjqc_container_$id .jqplot-table-legend').hide();
                                 } else {
-                                    jQuery('.jqplot-table-legend').show();
+                                    jQuery('#rjqc_container_$id .jqplot-table-legend').show();
                                 }
 
                                 jQuery('#rjqc_container_$id').bind('jqplotDataMouseOver', function (ev, seriesIndex, pointIndex, data) {
-                                    jQuery('.jqplot-highlighter-tooltip').html('' + data[1] + '$tooltipSuffix');
+                                    jQuery('#rjqc_container_$id .jqplot-highlighter-tooltip').html('' + data[1] + '$tooltipSuffix');
                                 });
                                 $(window).resize(function() {
                                     chart_$id.replot( { resetAxes: true } );

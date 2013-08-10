@@ -3,10 +3,10 @@ Contributors: randyjensen
 Donate link: http://randyjensen.com/
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
-Tags: WordPress charts, charts, chart, graphs, graph, bar chart, bar graph, line chart, line graph, pie chart, pie graph, donut chart, donut graph, quickcharts, jqplot, highcharts
+Tags: WordPress charts, charts, chart, graphs, graph, bar chart, bar graph, line chart, line graph, pie chart, pie graph, quickcharts, jqplot, highcharts
 Requires at least: 3.0
 Tested up to: 3.5.2
-Stable tag: 0.5.5
+Stable tag: 0.5.6
 
 Build Complex, Powerful HTML5 Bar Charts, Line Charts and Pie Charts in Just Minutes. No Programming Knowledge Required!
 
@@ -25,7 +25,7 @@ Build and publish your chart in minutes by:
 The chart will be dynamically built out and updated as you type. Once you’re done, just save it and add it to any Post, Page or Custom Post Type by going to Add Media -> Insert Quick Chart.
 
 = Features =
-* Create bar, pie, donut and line charts with simple Intuitive UI
+* Create bar, pie and line charts with simple Intuitive UI
 * Charts are HTML, CSS and JavaScript so they will work on any modern mobile device
 * Charts will resize dynamically with responsive themes
 * Enter your data directly into the Excel-like table without having to know options or long short code sequences to build your chart
@@ -60,7 +60,7 @@ Make sure to leave a 5 star review! If you have any issues, make sure to get in 
 
 = In the Works =
 * Localization
-* New Design
+* Ability to disable X and Y axis labels
 
 = Feature Requests? =
 
@@ -73,6 +73,10 @@ Get in touch with me: [randyjensen.com](http://www.randyjensen.com)
 3. Bar Chart
 
 == Changelog ==
+
+= 0.5.6 =
+* Bug fix with shortcode adding p tags because of wpautop
+* Bug fix with chart title's bottom margin being too much when legends are turned off
 
 = 0.5.5 =
 * Bug fix in the way the legends and tooltips are handled

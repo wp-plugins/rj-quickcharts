@@ -104,6 +104,9 @@ if(!class_exists('RJ_Quickcharts_Shortcode'))
                 }
 
                 $return_string .= "<div id='rjqc_container_$id' style='height:".$chartHeight."px'></div>";
+                if ($legend === 'false') {
+                $return_string .= "<style>#rjqc_container_$id .jqplot-title {top: 30px!important;}</style>";
+                }
                 $return_string .= "<script>";
                 $return_string .= "(function ($) {
                     tooltipSuffix = '$tooltipSuffix';
@@ -212,22 +215,21 @@ if(!class_exists('RJ_Quickcharts_Shortcode'))
                                         }
                                     }
                                 });
-
                                 // Handle legend hiding on the client
                                 if($legend === false) {
-                                    jQuery('#rjqc_container_$id .jqplot-table-legend').hide();
+                                    jQuery('#rjqc_container_$id .jqplot-table-legend').remove();
                                 } else {
                                     jQuery('#rjqc_container_$id .jqplot-table-legend').show();
                                 }
-
+                                // Bind tooltips
                                 jQuery('#rjqc_container_$id').bind('jqplotDataMouseOver', function (ev, seriesIndex, pointIndex, data) {
                                     jQuery('#rjqc_container_$id .jqplot-highlighter-tooltip').html('' + data[1] + '$tooltipSuffix');
                                 });
+                                // Resize charts
                                 $(window).resize(function() {
-                                    chart_$id.replot( { resetAxes: true } );
+                                    chart_$id.replot({ resetAxes: true });
                                 });
                                 ";
-
                 $return_string .= "})(jQuery);";
                 $return_string .= "</script>";
 

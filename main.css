@@ -27,6 +27,11 @@
     cursor: pointer;
 }
 
+#screenshot {
+    float: right;
+    margin-top: -3px;
+}
+
 .clear-handsontable-x {
     font-size: 11px;
     cursor: pointer;

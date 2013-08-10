@@ -108,11 +108,13 @@ echo '<div class="rjqc-area">';
     ';
 
     echo '
-    <div class="postbox">
+    <div class="postbox" id="rjqc-chart-resize">
         <h3 class="hndle"><span>Step 3: Preview</span></h3>
         <div class="inside">
+            <div>
                 <div id="rjqc-chart" style="height:'.$chart_height.'px;"></div>
-            <div class="cf"></div>
+                <div class="cf"></div>
+            </div>
         </div>
     </div>
     ';
@@ -123,6 +125,7 @@ echo '<div class="rjqc-area">';
         <div class="inside">
             <div class="get-shortcode rjqc-button button">Save Chart</div>
             <div class="save-message"></div>
+            <!--<div id="screenshot" class="rjqc-button button">Save Image</div>-->
             <div class="cf"></div>
         </div>
     </div>
@@ -136,7 +139,9 @@ echo "<link rel='stylesheet' href='".plugins_url('/css/jquery.jqplot.min.css', d
 echo "<link rel='stylesheet' href='".plugins_url('/css/spectrum.css', dirname(__FILE__))."' type='text/css' media='all' />";
 echo '<!--[if lt IE 9]><script language="javascript" type="text/javascript" src="'.plugins_url("/js/excanvas.min.js", dirname(__FILE__)).'"></script><![endif]-->';
 echo "<script type='text/javascript' src='".plugins_url('/js/min/rjqc-frontend-full.min.js', dirname(__FILE__))."'></script>";
+echo "<link rel='stylesheet' href='http://code.jquery.com/ui/1.8.20/themes/base/jquery-ui.css' type='text/css' media='all' />";
 
+echo "<script src='//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js'></script>";
 echo "<script type='text/javascript' src='".plugins_url('/handsontable/dist/jquery.handsontable.js', dirname(__FILE__))."'></script>";
 echo "<script type='text/javascript' src='".plugins_url('/js/spectrum.js', dirname(__FILE__))."'></script>";
 echo "<script type='text/javascript' src='".plugins_url('/js/main.js', dirname(__FILE__))."'></script>";
@@ -286,7 +291,7 @@ handsontable = jQuery('#dataTable');
         jQuery(".jqplot-highlighter-tooltip").html('' + data[1] + tooltipSuffix);
     });
 
-    jQuery('.get-shortcode').text('Save Form')
+    jQuery('.get-shortcode').text('Save Chart')
                             .removeClass('get-shortcode')
                             .addClass('rjqc-save-chart');
 
@@ -464,5 +469,22 @@ handsontable = jQuery('#dataTable');
             area.style.display = 'none';
         }
     });
+
+    // Handle ability to resize chart
+    /*var handleResizer = function() {
+        rjqc.buildChart(chartOpts, theYData, series);
+    }
+    $('#rjqc-chart-resize').resizable({
+        minHeight: 360,
+        minWidth: 400,
+    });
+    $('#rjqc-chart-resize').resize(handleResizer);
+
+    // Handle screenshot button
+    $('#screenshot').click(function() {
+        var imgData = $('#rjqc-chart').jqplotToImageStr({});
+        var imgElem = $('<img/>').attr('src',imgData);
+        window.open(imgData);
+    });*/
 })(jQuery);
 </script>

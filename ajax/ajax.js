@@ -151,7 +151,7 @@ jQuery(document).ready(function($) {
                 data: data,
                 cache: false,
                 success: function (response) {
-                    $('.save-message').html('Chart Saved!').delay(3000).queue(function() {
+                    $('.save-message').html('Chart Saved!').stop().delay(4000).queue(function() {
                         $(this).html('');
                     });
                 },

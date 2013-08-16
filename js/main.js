@@ -321,7 +321,7 @@
 
             // Handle legend hiding on the client
             if(chartLegend === false) {
-                jQuery('.jqplot-table-legend').hide();
+                jQuery('.jqplot-table-legend').remove();
             } else {
                 jQuery('.jqplot-table-legend').show();
             }

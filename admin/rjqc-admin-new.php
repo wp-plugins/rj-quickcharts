@@ -117,6 +117,7 @@ echo '<div class="rjqc-area">';
             </div>
         </div>
     </div>
+    <div id="rjqc-chart-resize-info"></div>
     ';
 
     echo '
@@ -125,7 +126,7 @@ echo '<div class="rjqc-area">';
         <div class="inside">
             <div class="get-shortcode rjqc-button button">Save Chart</div>
             <div class="save-message"></div>
-            <!--<div id="screenshot" class="rjqc-button button">Save Image</div>-->
+            <div id="screenshot" class="rjqc-button button">Screenshot Chart</div>
             <div class="cf"></div>
         </div>
     </div>
@@ -421,17 +422,24 @@ handsontable = jQuery('#dataTable');
     jQuery('#chart-height input').keyup(function() {
         chartHeight = jQuery(this).val();
         if (chartHeight === '') {
-            jQuery('#rjqc-chart').height('300px');
-        } else {
-            jQuery('#rjqc-chart').height(chartHeight+'px');
+            chartHeight = '300'
         }
+
+        jQuery('#rjqc-chart').height(chartHeight+'px');
+
+        $('#rjqc-chart-resize').resizable({
+            minHeight: parseInt(chartHeight)+60,
+            maxHeight: parseInt(chartHeight)+60,
+            minWidth: 400,
+        });
+
         chart.replot();
     });
 
     <? if ($_GET['id']) { ?>
     if (<? echo $legend ?> === 0) {
         setTimeout(function(){
-            jQuery('.jqplot-table-legend').hide();
+            jQuery('.jqplot-table-legend').remove();
         }, 150);
     }
     <? } ?>
@@ -471,20 +479,36 @@ handsontable = jQuery('#dataTable');
     });
 
     // Handle ability to resize chart
-    /*var handleResizer = function() {
-        rjqc.buildChart(chartOpts, theYData, series);
+    var handleResizer = function() {
+        jQuery('#rjqc-chart-resize-info')
+            .css({
+                'padding':'5px 0 0 5px',
+                'color':'#e42217'
+            })
+            .text('* Please note that resizing the chart is only for \
+                    taking screenshots and will not reflect the acutal \
+                    size of the chart in your posts.');
+        rjqc.buildOutQuickchartLive(jQuery('#chart-type select').val(), chart, chartOpts);
     }
     $('#rjqc-chart-resize').resizable({
-        minHeight: 360,
+        minHeight: parseInt(<?= $chart_height ?>)+60,
+        maxHeight: parseInt(<?= $chart_height ?>)+60,
         minWidth: 400,
     });
     $('#rjqc-chart-resize').resize(handleResizer);
 
     // Handle screenshot button
     $('#screenshot').click(function() {
+        jQuery('#rjqc-chart-resize-info')
+            .css({
+                'padding':'5px 0 0 5px',
+                'color':'#e42217'
+            })
+            .text('* Change the size of the chart for your screenshot \
+                    with the draggable handle above.');
         var imgData = $('#rjqc-chart').jqplotToImageStr({});
         var imgElem = $('<img/>').attr('src',imgData);
         window.open(imgData);
-    });*/
+    });
 })(jQuery);
 </script>

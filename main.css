@@ -86,7 +86,8 @@
 }
 
 .save-message {
-    padding: 3px 0 0 90px;
+    float: left;
+    padding: 3px 0 0 10px;
 }
 
 .save-rjqc label {

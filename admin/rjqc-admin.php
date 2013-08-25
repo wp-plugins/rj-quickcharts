@@ -1,4 +1,4 @@
-<?
+<?php
 wp_enqueue_style('rjqc-styles', plugins_url('/rj-quickcharts/main.css'));
 wp_enqueue_script('jquery-effects-core');
 

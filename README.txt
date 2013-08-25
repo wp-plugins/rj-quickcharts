@@ -6,7 +6,7 @@ License URI: http://www.gnu.org/licenses/gpl.html
 Tags: WordPress charts, charts, chart, graphs, graph, bar chart, bar graph, line chart, line graph, pie chart, pie graph, quickcharts, jqplot, highcharts
 Requires at least: 3.0
 Tested up to: 3.5.2
-Stable tag: 0.5.7
+Stable tag: 0.5.8
 
 Build Complex, Powerful HTML5 Bar Charts, Line Charts and Pie Charts in Just Minutes. No Programming Knowledge Required!
 
@@ -75,6 +75,9 @@ Get in touch with me: [randyjensen.com](http://www.randyjensen.com)
 3. Bar Chart
 
 == Changelog ==
+
+= 0.5.8 =
+* Updated <? tags to include <?php and work on more server configurations
 
 = 0.5.7 =
 * You can now take screenshots of your chart right from the admin screen. Drag the chart area handle to change the width of your chart for the screenshot and just click 'Screenshot Chart'. Easy!

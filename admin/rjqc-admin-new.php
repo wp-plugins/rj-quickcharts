@@ -1,4 +1,4 @@
-<?
+<?php
 $type           = '';
 $title          = '';
 $sub_title      = '';
@@ -155,7 +155,7 @@ series = [],
 handsontable = jQuery('#dataTable');
 </script>
 
-<? if (!$_GET['id']) { ?>
+<?php if (!$_GET['id']) { ?>
 <script>
 (function ($) {
 
@@ -199,33 +199,33 @@ handsontable = jQuery('#dataTable');
     rjqc.setUpHandsontable();
 })(jQuery);
 </script>
-<? } ?>
+<?php } ?>
 
-<? if ($_GET['id']) { ?>
+<?php if ($_GET['id']) { ?>
 <script>
 (function ($) {
-    <? if ($_GET['message']) { ?>
+    <?php if ($_GET['message']) { ?>
     var path = window.location.pathname + window.location.search;
     path = path.slice(0,-13);
     window.history.pushState("", "", path);
     setTimeout(function() {
         jQuery('.updated').fadeOut();
     }, 5000);
-    <? } ?>
+    <?php } ?>
 
-    tooltipSuffix = '<? echo $tooltip_suffix ?>',
-    curChartType = '<? echo $type ?>';
+    tooltipSuffix = '<?php echo $tooltip_suffix ?>',
+    curChartType = '<?php echo $type ?>';
 
-    jQuery('#chart-type select').val('<? echo $type ?>');
-    jQuery('#chart-legend select').val(<? echo $legend ?>);
+    jQuery('#chart-type select').val('<?php echo $type ?>');
+    jQuery('#chart-legend select').val(<?php echo $legend ?>);
 
-    chartOpts.chartLegend = <? echo $legend ?>;
-    chartOpts.chartTitle = '<? echo $title ?>';
-    chartOpts.chartYAxis = '<? echo $y_axis_title ?>';
-    chartOpts.chartType = '<? echo $type ?>';
-    chartOpts.seriesColors = <? echo json_encode($series_colors) ?>;
+    chartOpts.chartLegend = <?php echo $legend ?>;
+    chartOpts.chartTitle = '<?php echo $title ?>';
+    chartOpts.chartYAxis = '<?php echo $y_axis_title ?>';
+    chartOpts.chartType = '<?php echo $type ?>';
+    chartOpts.seriesColors = <?php echo json_encode($series_colors) ?>;
 
-    var hotSeries = <? echo $hotSeries ?>;
+    var hotSeries = <?php echo $hotSeries ?>;
 
     jQuery('#dataTable').handsontable({data: hotSeries});
 
@@ -298,7 +298,7 @@ handsontable = jQuery('#dataTable');
 
 })(jQuery);
 </script>
-<? } ?>
+<?php } ?>
 
 <script>
 (function ($) {
@@ -436,13 +436,13 @@ handsontable = jQuery('#dataTable');
         chart.replot();
     });
 
-    <? if ($_GET['id']) { ?>
-    if (<? echo $legend ?> === 0) {
+    <?php if ($_GET['id']) { ?>
+    if (<?php echo $legend ?> === 0) {
         setTimeout(function(){
             jQuery('.jqplot-table-legend').remove();
         }, 150);
     }
-    <? } ?>
+    <?php } ?>
 
     //
     // Color Pallete
@@ -491,8 +491,8 @@ handsontable = jQuery('#dataTable');
         rjqc.buildOutQuickchartLive(jQuery('#chart-type select').val(), chart, chartOpts);
     }
     $('#rjqc-chart-resize').resizable({
-        minHeight: parseInt(<?= $chart_height ?>)+60,
-        maxHeight: parseInt(<?= $chart_height ?>)+60,
+        minHeight: parseInt(<?php echo $chart_height ?>)+60,
+        maxHeight: parseInt(<?php echo $chart_height ?>)+60,
         minWidth: 400,
     });
     $('#rjqc-chart-resize').resize(handleResizer);

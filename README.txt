@@ -77,7 +77,7 @@ Get in touch with me: [randyjensen.com](http://www.randyjensen.com)
 == Changelog ==
 
 = 0.5.9 =
-* Updated CSS for custom icon with WordPress 2.8
+* Updated CSS for custom icon with WordPress 3.8
 
 = 0.5.8 =
 * Updated <? tags to include <?php and work on more server configurations
